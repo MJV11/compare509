@@ -22,7 +22,7 @@ export default function ComparePage() {
 
   // cache: "dataset||school||year" -> row data
   const [dataCache, setDataCache] = useState<Record<string, SchoolData | null>>({});
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const availableYears = datasets.find((d) => d.key === "employment")?.years ?? [];

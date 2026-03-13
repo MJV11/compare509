@@ -136,7 +136,7 @@ export default function ComparePage() {
         {/* Title — fixed */}
 
         {/* controls */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex flex-col md:flex-row items-center gap-3 shrink-0">
           <select
             className="text-sm border border-gray-200 rounded-lg px-3 py-2 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-gray-300"
             value={selectedYear}
@@ -190,7 +190,7 @@ export default function ComparePage() {
         {/* Chips — fills remaining space, scrolls horizontally */}
         {schoolNames.length > 0 ? (
           <div className="w-full">
-            <div className="flex flex-row flex-wrap items-center justify-center">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-1">
               {schoolNames.map((name) => (
                 <div
                   key={name}

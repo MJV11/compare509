@@ -54,7 +54,6 @@ export default function SchoolProfilePage() {
     <div className="w-full flex flex-col items-center gap-6">
       {/* Search bar */}
       <div className="w-full flex flex-col items-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">School Profile</h1>
         <div className="bg-white rounded-xl border border-gray-200 p-6 w-full">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="sm:col-span-2">

@@ -134,7 +134,6 @@ export default function ComparePage() {
       {/* Toolbar */}
       <div className="flex flex-col items-center gap-4 min-w-0">
         {/* Title — fixed */}
-        <h1 className="text-3xl font-bold text-gray-900 shrink-0">Compare</h1>
 
         {/* controls */}
         <div className="flex items-center gap-3 shrink-0">
@@ -164,7 +163,7 @@ export default function ComparePage() {
               />
             </div>
             {dropdownOpen && filtered.length > 0 && (
-              <ul className="absolute right-0 z-50 mt-1 w-72 max-h-72 overflow-auto rounded-lg border border-gray-200 bg-white py-1.5 shadow-lg">
+              <ul className="absolute left-0 z-50 mt-1 w-72 max-h-72 overflow-auto rounded-lg border border-gray-200 bg-white py-1.5 shadow-lg">
                 {filtered.map((opt) => (
                   <li
                     key={opt}
@@ -177,6 +176,15 @@ export default function ComparePage() {
               </ul>
             )}
           </div>
+
+          {schoolNames.length > 0 && (
+            <button
+              onClick={() => setSchoolNames([])}
+              className="text-xs flex items-center gap-2 bg-white border border-gray-200 text-gray-700 hover:text-gray-500 rounded-lg px-4 h-[38px] whitespace-nowrap"
+            >
+              Clear All
+            </button>
+          )}
         </div>
 
         {/* Chips — fills remaining space, scrolls horizontally */}

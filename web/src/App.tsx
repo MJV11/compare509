@@ -2,6 +2,7 @@ import { useState } from "react";
 import ComparePage from "./pages/ComparePage";
 import SchoolProfilePage from "./pages/SchoolProfilePage";
 import DatasetsPage from "./pages/DatasetsPage";
+import SuggestionBox from "./components/SuggestionBox";
 import { getParam, setParams } from "./utils/urlState";
 
 type Page = "compare" | "profile" | "datasets";
@@ -61,10 +62,9 @@ export default function App() {
             ))}
           </nav>
 
-          {/* Mobile hamburger button */}
-          <div className="md:hidden flex items-center">
+          <div className="flex items-center gap-3">
             <button 
-              className="p-2 -mr-2 text-gray-600 hover:text-gray-900 focus:outline-none"
+              className="md:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900 focus:outline-none"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -78,6 +78,7 @@ export default function App() {
                 </svg>
               )}
             </button>
+            <SuggestionBox />
           </div>
         </div>
 

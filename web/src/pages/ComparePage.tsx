@@ -24,7 +24,7 @@ export default function ComparePage() {
 
   // cache: "dataset||school||year" -> row data
   const [dataCache, setDataCache] = useState<Record<string, SchoolData | null>>({});
-  const [_loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const availableYears = datasets.find((d) => d.key === "employment")?.years ?? [];
@@ -235,6 +235,7 @@ export default function ComparePage() {
                     year={selectedYear}
                     onRemove={() => removeSchool(name)}
                     canRemove={schoolNames.length > 1}
+                    loading={loading}
                   />
                 </div>
               ))}

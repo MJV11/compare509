@@ -20,6 +20,7 @@ interface Props {
   year: string;
   onRemove: () => void;
   canRemove: boolean;
+  loading: boolean;
 }
 
 export default function SchoolCard({
@@ -28,6 +29,7 @@ export default function SchoolCard({
   year,
   onRemove,
   canRemove,
+  loading,
 }: Props) {
   const schoolDisplayName = displayName(name);
   const branding = getBranding(name);
@@ -109,11 +111,11 @@ export default function SchoolCard({
           {SECTIONS.map((section) => {
             const data = dataByDataset[section.dataset];
             return (
-              <div key={section.heading} className='bg-white/60 p-3 rounded-lg'>
+              <div key={section.heading} className={` p-3 rounded-lg ${loading ? "animate-pulse bg-gray-50" : "bg-white/60"}`}>
                 <div className="text-xs font-semibold uppercase mb-1" style={{ color: `${branding.secondary}` }}>
                   {section.heading}
                 </div>
-                {!data ? (
+                {loading ? <div className="text-sm text-gray-300 py-2"></div> : !data ? (
                   <div className="text-sm text-gray-300 py-2">No data</div>
                 ) : (
                   <div>

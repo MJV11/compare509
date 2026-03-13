@@ -106,8 +106,8 @@ const BRANDING: Record<string, SchoolBranding> = {
     sealUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/CSU%2C_Los_Angeles_seal.svg/1280px-CSU%2C_Los_Angeles_seal.svg.png",
   },
   "california-san francisco, university of": {
-    primary: "#052049", secondary: "#18A3AC",
-    sealUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/University_of_California%2C_San_Francisco_logo.svg/1280px-University_of_California%2C_San_Francisco_logo.svg.png",
+    primary: "#ffe22b", secondary: "#0047bb",
+    sealUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/UC_Law_San_Francisco_Seal.svg/330px-UC_Law_San_Francisco_Seal.svg.png",
   },
   "campbell university": {
     primary: "#EA7125", secondary: "#1E252B",

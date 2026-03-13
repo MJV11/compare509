@@ -180,7 +180,7 @@ export default function ComparePage() {
           {schoolNames.length > 0 && (
             <button
               onClick={() => setSchoolNames([])}
-              className="text-xs flex items-center gap-2 bg-white border border-gray-200 text-gray-700 hover:text-gray-500 rounded-lg px-4 h-[38px] whitespace-nowrap"
+              className="text-sm flex items-center gap-2 bg-white border border-gray-200 text-gray-700 hover:text-gray-500 rounded-lg px-4 h-[38px] whitespace-nowrap"
             >
               Clear All
             </button>

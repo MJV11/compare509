@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { fmtPct, titleCase } from "../utils/compareHelpers";
 import { useRowHover } from "../context/RowHoverContext";
+import { useRowExpand } from "../context/RowExpandContext";
 import { PiCaretDownBold, PiCaretUpBold } from "react-icons/pi";
 
 // ---------------------------------------------------------------------------
@@ -121,7 +121,8 @@ export function PctGroupRow({
   rowKey: string;
   highlightColor?: string;
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const { expandedKeys, toggle } = useRowExpand();
+  const expanded = expandedKeys.has(rowKey);
   const { bg, handlers } = useHoverRow(rowKey, highlightColor);
   const rawDisplay = Number.isInteger(totalRaw) ? totalRaw : parseFloat(totalRaw.toFixed(1));
 
@@ -135,11 +136,11 @@ export function PctGroupRow({
         <div className="flex items-center gap-1 min-w-0">
           <span className="text-sm text-gray-800 tracking-tight">{label}</span>
           <button
-            onClick={() => setExpanded((v) => !v)}
-            className="text-xs text-gray-400 hover:text-gray-600 shrink-0 transition-colors px-1"
+            onClick={() => toggle(rowKey)}
+            className="text-xs text-gray-700 hover:text-gray-500 shrink-0 transition-colors px-1"
             title={expanded ? "Collapse" : "Show Full-Time/Part-Time breakdown"}
           >
-            {expanded ? <PiCaretUpBold size={10} /> : <PiCaretDownBold size={10} />}
+            {expanded ? <PiCaretUpBold size={16} /> : <PiCaretDownBold size={16} />}
           </button>
         </div>
         <span className="text-sm font-medium text-gray-900 shrink-0 ml-2">

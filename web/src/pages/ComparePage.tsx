@@ -119,15 +119,11 @@ export default function ComparePage() {
     return result;
   };
 
-  const filtered = query
-    ? schools
-        .filter(
-          (s) =>
-            s.toLowerCase().includes(query.toLowerCase()) &&
-            !schoolNames.includes(s)
-        )
-        .slice(0, 14)
-    : schools.filter((s) => !schoolNames.includes(s)).slice(0, 14);
+  const filtered = schools.filter(
+    (s) =>
+      (!query || s.toLowerCase().includes(query.toLowerCase())) &&
+      !schoolNames.includes(s)
+  );
 
   return (
     <div className="h-full min-h-0">
@@ -163,7 +159,7 @@ export default function ComparePage() {
               />
             </div>
             {dropdownOpen && filtered.length > 0 && (
-              <ul className="absolute left-0 z-50 mt-1 w-72 max-h-72 overflow-auto rounded-lg border border-gray-200 bg-white py-1.5 shadow-lg">
+              <ul className="absolute left-0 z-50 mt-1 w-72 max-h-96 overflow-auto rounded-lg border border-gray-200 bg-white py-1.5 shadow-lg">
                 {filtered.map((opt) => (
                   <li
                     key={opt}

@@ -14,6 +14,7 @@ export default function ComparePage() {
   const [schools, setSchools] = useState<string[]>([]);
   const [selectedYear, setSelectedYear] = useState(() => getParam("year") ?? "");
   const [schoolNames, setSchoolNames] = useState<string[]>(() => getParamList("schools"));
+  const [exiting, setExiting] = useState<Set<string>>(new Set());
 
   // Search box state
   const [query, setQuery] = useState("");
@@ -96,8 +97,17 @@ export default function ComparePage() {
     setDropdownOpen(false);
   };
 
-  const removeSchool = (name: string) =>
-    setSchoolNames((prev) => prev.filter((n) => n !== name));
+  const removeSchool = (name: string) => {
+    setExiting((prev) => new Set(prev).add(name));
+    setTimeout(() => {
+      setSchoolNames((prev) => prev.filter((n) => n !== name));
+      setExiting((prev) => {
+        const next = new Set(prev);
+        next.delete(name);
+        return next;
+      });
+    }, 350);
+  };
 
   const getDataForSchool = (name: string): Record<string, SchoolData | null> => {
     const result: Record<string, SchoolData | null> = {};
@@ -171,11 +181,12 @@ export default function ComparePage() {
         {/* Chips — fills remaining space, scrolls horizontally */}
         {schoolNames.length > 0 ? (
           <div className="w-full">
-            <div className="flex flex-row flex-wrap gap-2 items-center justify-center">
+            <div className="flex flex-row flex-wrap items-center justify-center">
               {schoolNames.map((name) => (
                 <div
                   key={name}
-                  className="flex items-center gap-2 border-2 border-dashed border-gray-700 rounded-full px-4 py-1.5 shrink-0"
+                  className={`flex items-center gap-2 border-2 border-dashed border-gray-700 rounded-full px-4 py-1.5 shrink-0 ${exiting.has(name) ? "animate-chip-out" : "animate-chip-in"}`}
+                  style={!exiting.has(name) ? { margin: "0 4px" } : {}}
                 >
                   <span className="text-sm whitespace-nowrap font-semibold text-gray-800">
                     {displayName(name)}
@@ -205,16 +216,21 @@ export default function ComparePage() {
       {schoolNames.length > 0 ? (
         <RowHoverProvider>
           <div className="w-full overflow-x-auto">
-            <div className="flex flex-row gap-10 items-start w-max mx-auto p-6">
+            <div className="flex flex-row items-start w-max mx-auto p-6">
               {schoolNames.map((name) => (
-                <SchoolCard
+                <div
                   key={name}
-                  name={name}
-                  dataByDataset={getDataForSchool(name)}
-                  year={selectedYear}
-                  onRemove={() => removeSchool(name)}
-                  canRemove={schoolNames.length > 1}
-                />
+                  className={exiting.has(name) ? "animate-card-out" : "animate-card-in"}
+                  style={!exiting.has(name) ? { margin: "0 20px" } : {}}
+                >
+                  <SchoolCard
+                    name={name}
+                    dataByDataset={getDataForSchool(name)}
+                    year={selectedYear}
+                    onRemove={() => removeSchool(name)}
+                    canRemove={schoolNames.length > 1}
+                  />
+                </div>
               ))}
             </div>
           </div>

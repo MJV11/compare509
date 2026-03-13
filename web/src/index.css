@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Public Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+
 @keyframes card-in {
   from {
     opacity: 0;
